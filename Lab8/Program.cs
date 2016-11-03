@@ -37,12 +37,13 @@ namespace Lab8
 
 
             //Display
+            Console.WriteLine();
             Console.WriteLine("PLAYER DATA ");
-            Console.WriteLine("===================================================");
+            Console.WriteLine("========================================================================");
             Console.WriteLine();
             for (int i = 0; i < playerDirectory.Length; i++)
             {
-                Console.Write(String.Format("Batter {0,-1} : {1,-5} |", i+1,playerDirectory[i]));
+                Console.Write(String.Format("Batter {0,-1} : {1,-10} |", i+1,playerDirectory[i]));
 
                 for (int j = 0; j < 2; j++)
                 {
@@ -51,11 +52,14 @@ namespace Lab8
                         metric = "average :";
                     else if (j ==1)
                         metric = "slugging percentage :";
-                    Console.Write(String.Format(" {0,-5} {1, -5} | ", metric, playerBattingRecords[i, j]));                 
+
+                    Console.Write(String.Format(" {0,-5} {1, -5} | ", metric, playerBattingRecords[i, j].ToString("#.00")));                 
                 }
                 Console.WriteLine();
             }///////////////////////////
-
+            Console.WriteLine();
+            Console.WriteLine("========================================================================");
+            Console.WriteLine();
 
         }////MAIN
 
@@ -69,7 +73,7 @@ namespace Lab8
             double battingAvg = 0;
             double slugPercent = 0;
 
-            Console.WriteLine("What is the name of your player?");
+            Console.WriteLine(String.Format("What is the name of player {0,0}?",index+1));
             string playerName = Console.ReadLine();
             playerDirectory[index] = playerName;
             ////////////////////////////////////////////
@@ -123,7 +127,7 @@ namespace Lab8
 
 
             //Calculating batting stats and populating the Batting Record Array
-            battingAvg = Math.Round((double)hitCount / atBats, 3);
+            battingAvg =Math.Round((double)hitCount / atBats, 3);
             slugPercent = Math.Round((double)hitSum / atBats, 3);
             playerBattingRecords[index, 0] = battingAvg;
             playerBattingRecords[index, 1] = slugPercent;
